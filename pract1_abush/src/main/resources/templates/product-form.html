@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить товар</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        label { display: block; margin-top: 0.75rem; font-weight: bold; }
+        input[type="text"], input[type="number"], textarea {
+            width: 100%; max-width: 400px; padding: 0.4rem; margin-top: 0.25rem; }
+        textarea { height: 80px; }
+        button { margin-top: 1rem; padding: 0.5rem 1rem; background: #28a745; color: white; border: none; cursor: pointer; }
+        .back-link { display: inline-block; margin-bottom: 1rem; color: #555; }
+    </style>
+</head>
+<body>
+<a th:href="@{/products}" class="back-link">← Назад к списку товаров</a>
+<h1>Добавить товар</h1>
+
+<form th:action="@{/products/add}" method="post" th:object="${product}">
+    <label for="name">Название (обязательно):</label>
+    <input type="text" id="name" th:field="*{name}" placeholder="Например: Молоко">
+
+    <label for="price">Цена (обязательно, ₽):</label>
+    <input type="number" id="price" th:field="*{price}" placeholder="100">
+
+    <label for="description">Описание:</label>
+    <textarea id="description" th:field="*{description}" placeholder="Краткое описание..."></textarea>
+
+    <button type="submit">Сохранить</button>
+</form>
+</body>
+</html>
